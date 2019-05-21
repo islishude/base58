@@ -1,6 +1,8 @@
 package base58
 
-import "math/big"
+import (
+	"math/big"
+)
 
 const table = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 
@@ -16,8 +18,8 @@ func Encode(src []byte) (res string) {
 		res = string(table[mod.Int64()]) + res
 	}
 
-	for i := 0; i < len(src); i += 2 {
-		if 0 == src[i] && 0 == src[i+1] {
+	for _, char := range src {
+		if char == 0 {
 			res = "1" + res
 		} else {
 			break

@@ -1,7 +1,6 @@
 package base58
 
 import (
-	"bytes"
 	"encoding/hex"
 	"testing"
 )
@@ -77,26 +76,8 @@ func TestEncode(t *testing.T) {
 				t.Error(err)
 				return
 			}
-
-			var zeroCount int
-
-			for i := 0; i < len(tt.input); i += 2 {
-				if tt.input[i] == '0' && tt.input[i+1] == '0' {
-					zeroCount++
-				} else {
-					break
-				}
-			}
-
-			var src []byte
-			if zeroCount > 0 {
-				src = bytes.Repeat([]byte{0x00}, zeroCount)
-				src = append(src, input...)
-			} else {
-				src = input
-			}
-			if want := Encode(src); want != tt.want {
-				t.Errorf("Encode() = %v, want %v", want, tt.want)
+			if res := Encode(input); res != tt.want {
+				t.Errorf("Encode() = %s, want %s", res, tt.want)
 			}
 		})
 	}
