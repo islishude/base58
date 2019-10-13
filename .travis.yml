@@ -1,12 +1,5 @@
 language: "go"
 go:
-  - "1.9"
-  - "1.10"
-  - "1.11"
-  - "1.12"
-git:
-  depth: 1
-before_script:
-  - go get -v ./...
+  - "1.13"
 script:
-  - go test -v -race ./...
+  - go test -v -cover ./...
