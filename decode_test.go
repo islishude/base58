@@ -6,9 +6,6 @@ import (
 )
 
 func TestDecode(t *testing.T) {
-	type args struct {
-		input string
-	}
 	tests := []struct {
 		name    string
 		want    string
