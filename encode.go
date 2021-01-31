@@ -7,13 +7,12 @@ import (
 const table = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
 
 var base = big.NewInt(58)
-var zero = new(big.Int)
 
 // Encode encodes bytes to base58 string
 func Encode(src []byte) (res string) {
 	x := new(big.Int).SetBytes(src)
 	mod := new(big.Int)
-	for x.Cmp(zero) > 0 {
+	for x.Sign() > 0 {
 		x.QuoRem(x, base, mod)
 		res = string(table[mod.Int64()]) + res
 	}
